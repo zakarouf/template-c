@@ -58,6 +58,11 @@ check_build() {
     check_mkdir "./build/bin"
 }
 
+init_project() {
+    check_sanity
+    echo "# Project\n\n" >> "README.md"
+}
+
 make_clean() {
     clean_what=""
     casevar=$1
