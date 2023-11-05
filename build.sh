@@ -15,6 +15,34 @@ BIN_DIR="/usr/local/bin/"
 LIB_DIR="/usr/local/lib/"
 INC_DIR="/usr/local/include/"
 
+put_error() {
+    echo "Error: $*"
+}
+
+put_log() {
+    echo "Log: $*"
+}
+
+check_sanity() {
+    for i in "./src" "./src/bin" "./src/lib" "./src/testbin" "./src/testlib"
+    do
+        put_error "'$i' folder does not exist"
+        put_log "making '$i' directory tree"
+        $(mkdir -p $i)
+    done
+
+    if [ -d ".git" ]; then
+        continue
+    else 
+        yon="n"
+        read -r "Do you want to initialize a git repository in the current directory (Y/n)? " yon
+        if [ "$yon" = "Y"]; then
+            $(git init)
+        fi
+    fi
+    put_log "All Set"
+}
+
 check_mkdir() {
     if [ -d "$1" ]; then
         continue
