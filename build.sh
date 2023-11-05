@@ -153,6 +153,8 @@ make_test_lib(){
 
 make() {
     case "$1" in
+        "init") init_project
+        ;;
         "lib") make_lib
         ;;
         "headers") make_lib_header
@@ -170,7 +172,7 @@ make() {
         ;;
         *)
             echo "Unknown option '$1'"
-            echo "Usage: $0 [ lib | headers | bin | testlib | testbin | install[lib|bin]]"
+            echo "Usage: $0 [ init | lib | headers | bin | testlib | testbin | install[lib|bin]]"
         ;;
     esac
 
